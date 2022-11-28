@@ -9,10 +9,12 @@ use ic_kit::interfaces::{management};
 use serde::Serialize;
 use serde_bytes::ByteBuf;
 
-const CYCLE_SHARE: u128 = 1_000_000_000_000; // 1T Cycles
+// const CYCLE_SHARE: u128 = 1_000_000_000_000; // 1T Cycles
+const CYCLE_SHARE: u128 = 500_000_000_000; // 0.5T Cycles
 
-pub const WASM: &[u8] = include_bytes!("../../../wasm/hello_backend.wasm");
-    // include_bytes!("../../../wasm/hello_backend.wasm");
+
+pub const WASM: &[u8] = include_bytes!("../../../wasm/openlibrary_book.wasm");
+// include_bytes!("../../../wasm/hello_backend.wasm");
 
 #[derive(CandidType, Deserialize)]
 pub struct InstallCodeArgumentBorrowed<'a> {
@@ -23,9 +25,9 @@ pub struct InstallCodeArgumentBorrowed<'a> {
     pub arg: Vec<u8>,
 }
 
-#[update(name = "createAndInstall")]
-#[candid_method(update, rename = "createAndInstall")]
-pub async fn create_and_install() -> String {
+#[update(name = "create_book")]
+#[candid_method(update, rename = "create_book")]
+pub async fn create_book() -> String {
 
     use management::{CanisterStatus, WithCanisterId};
 

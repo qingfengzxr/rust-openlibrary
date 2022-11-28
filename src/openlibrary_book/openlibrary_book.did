@@ -1,0 +1,22 @@
+type section = record {
+  name : text;
+  content: text;
+};
+
+type CanisterIdRecord =
+    record {
+        canister_id: principal;
+    };
+
+service : {
+    "init_book": (book_name: text, author: text, desc: text) -> ();
+    "get_book_name": () -> (text) query;
+    "get_author_name": () -> (text) query;
+    "get_book_desc": () -> (text) query;
+
+    "add_section": (section_name: text, content: text) -> ();
+    "get_section_size": () -> (int32) query;
+    "get_section": (section_cnt: nat64) -> (section) query;
+
+    "deposit_cycles": (id: CanisterIdRecord, cycles: nat) -> ();
+}

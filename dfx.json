@@ -17,12 +17,28 @@
         "dist/openlibrary_frontend/"
       ],
       "type": "assets"
+    },
+    "openlibrary_book": {
+      "candid": "src/openlibrary_book/openlibrary_book.did",
+      "package": "openlibrary_book",
+      "type": "rust"
+    },
+    "hello_backend": {
+      "candid": "src/hello_backend/hello_backend.did",
+      "package": "hello_backend",
+      "type": "rust"
     }
   },
   "defaults": {
     "build": {
       "args": "",
       "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
     }
   },
   "version": 1

@@ -1,4 +1,6 @@
 [workspace]
 members = [
     "src/openlibrary_backend",
+    "src/openlibrary_book",
+    "src/hello_backend",
 ]

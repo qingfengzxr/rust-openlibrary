@@ -277,7 +277,7 @@ dependencies = [
  "anyhow",
  "binread",
  "byteorder",
- "candid_derive",
+ "candid_derive 0.4.5",
  "codespan-reporting",
  "hex",
  "ic-types",
@@ -296,10 +296,51 @@ dependencies = [
 ]
 
 [[package]]
+name = "candid"
+version = "0.8.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "244005a1917bb7614cd775ca8a5d59efeb5ac74397bb14ba29a19347ebd78591"
+dependencies = [
+ "anyhow",
+ "binread",
+ "byteorder",
+ "candid_derive 0.5.0",
+ "codespan-reporting",
+ "crc32fast",
+ "data-encoding",
+ "hex",
+ "lalrpop",
+ "lalrpop-util",
+ "leb128",
+ "logos",
+ "num-bigint",
+ "num-traits",
+ "num_enum",
+ "paste",
+ "pretty",
+ "serde",
+ "serde_bytes",
+ "sha2",
+ "thiserror",
+]
+
+[[package]]
 name = "candid_derive"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2e02c03c4d547674a3f3f3109538fb49871fbe636216daa019f06a62faca9061"
+dependencies = [
+ "lazy_static",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "candid_derive"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58f1f4db7c7d04b87b70b3a35c5dc5c2c9dd73cef8bdf6760e2f18a0d45350dd"
 dependencies = [
  "lazy_static",
  "proc-macro2",
@@ -629,6 +670,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8a9ee70c43aaf417c914396645a0fa852624801b24ebb7ae78fe8272889ac888"
 
 [[package]]
+name = "hello_backend"
+version = "0.1.0"
+dependencies = [
+ "candid 0.8.4",
+ "ic-cdk 0.6.7",
+ "ic-cdk-macros 0.6.7",
+ "once_cell",
+ "serde",
+ "serde_bytes",
+]
+
+[[package]]
 name = "hermit-abi"
 version = "0.1.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -649,9 +702,22 @@ version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0554d77b453140eefcb8c8192a342927f8c48cfda911dfa3cd4561a919dbd32f"
 dependencies = [
- "candid",
+ "candid 0.7.18",
  "cfg-if",
  "serde",
+]
+
+[[package]]
+name = "ic-cdk"
+version = "0.6.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9a5581267f756cab81f618c4ab27e3ca89a5a72b1869f9fbd5a8ec97a50c4e9"
+dependencies = [
+ "candid 0.8.4",
+ "cfg-if",
+ "ic0",
+ "serde",
+ "serde_bytes",
 ]
 
 [[package]]
@@ -660,8 +726,23 @@ version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "954a421ace8b8c8e52d2847c4aa68c80101396134c800ecb12f63457937c4ab4"
 dependencies = [
- "candid",
- "ic-cdk",
+ "candid 0.7.18",
+ "ic-cdk 0.5.7",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_tokenstream",
+ "syn",
+]
+
+[[package]]
+name = "ic-cdk-macros"
+version = "0.6.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2f2c0d698c4efb47284fe469642f5c37db856889c3e8a3931d6a7561b9625247"
+dependencies = [
+ "candid 0.8.4",
+ "ic-cdk 0.6.7",
  "proc-macro2",
  "quote",
  "serde",
@@ -677,9 +758,9 @@ checksum = "a5f1be26d1d7c53c51e7291475d41773f4d86b7f67599d3beae8fd375e095fa0"
 dependencies = [
  "async-std",
  "bincode",
- "candid",
+ "candid 0.7.18",
  "futures",
- "ic-cdk",
+ "ic-cdk 0.5.7",
  "ic-kit-macros",
  "serde",
  "serde_bytes",
@@ -713,6 +794,12 @@ dependencies = [
  "sha2",
  "thiserror",
 ]
+
+[[package]]
+name = "ic0"
+version = "0.18.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c221dd0bbe04c556238774b8564bcdc071d4022a085d625964a95615240dae02"
 
 [[package]]
 name = "indexmap"
@@ -927,10 +1014,23 @@ checksum = "86f0b0d4bf799edbc74508c1e8bf170ff5f41238e5f8225603ca7caaae2b7860"
 name = "openlibrary_backend"
 version = "0.1.0"
 dependencies = [
- "candid",
- "ic-cdk",
- "ic-cdk-macros",
+ "candid 0.7.18",
+ "ic-cdk 0.5.7",
+ "ic-cdk-macros 0.5.7",
  "ic-kit",
+ "serde",
+ "serde_bytes",
+]
+
+[[package]]
+name = "openlibrary_book"
+version = "0.1.0"
+dependencies = [
+ "candid 0.8.4",
+ "ic-cdk 0.6.7",
+ "ic-cdk-macros 0.6.7",
+ "ic-kit",
+ "once_cell",
  "serde",
  "serde_bytes",
 ]
