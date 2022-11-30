@@ -1,0 +1,10 @@
+type Profile = record {
+    "name": text;
+};
+
+service : {
+    "getSelf": () -> (Profile) query;
+    "get": (text) -> (Profile) query;
+    "update": (Profile) -> ();
+    "search": (text) -> (opt Profile) query;
+}

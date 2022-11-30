@@ -104,12 +104,28 @@ pub fn get_book_desc() -> String {
 ///
 /// See [IC method `deposit_cycles`](https://internetcomputer.org/docs/current/references/ic-interface-spec/#ic-deposit_cycles)
 #[ic_cdk_macros::update]
-pub async fn deposit_cycles(arg: CanisterIdRecord, cycles: u128) -> CallResult<()> {
-    call_with_payment128(
-        Principal::management_canister(),
-        "deposit_cycles",
-        (arg,),
-        cycles,
+
+pub async fn deposit_cycles(canister_id: Principal, cycles_amount: u128) -> bool {
+    match ic_cdk::api::call::call_with_payment128(
+        canister_id,
+        "wallet_receive",
+        {},
+        cycles_amount,
     )
     .await
+    {
+        Ok(x) => x,
+        Err((code, msg)) => {
+            // print!("{}", format!(
+            //     "An error happened during the call: {}: {}",
+            //     code as u8, msg
+            // ));
+            panic!("{}", format!(
+                "An error happened during the call: {}: {}",
+                code as u8, msg
+            ));
+        }
+    };
+
+    true
 }

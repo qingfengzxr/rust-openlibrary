@@ -3,11 +3,6 @@ type section = record {
   content: text;
 };
 
-type CanisterIdRecord =
-    record {
-        canister_id: principal;
-    };
-
 service : {
     "init_book": (book_name: text, author: text, desc: text) -> ();
     "get_book_name": () -> (text) query;
@@ -18,5 +13,5 @@ service : {
     "get_section_size": () -> (int32) query;
     "get_section": (section_cnt: nat64) -> (section) query;
 
-    "deposit_cycles": (id: CanisterIdRecord, cycles: nat) -> ();
+    "deposit_cycles": (id: principal, cycles: nat) -> (bool);
 }
