@@ -1,10 +1,9 @@
-use candid::Nat;
 use ic_kit::interfaces::management::{CanisterStatusResponse, DefiniteCanisterSettings, Status};
 use once_cell::sync::Lazy;
 use ic_cdk::{export::candid::{candid_method, CandidType, Principal}, api::{management_canister::provisional::CanisterIdRecord, call::{CallResult, call_with_payment128}}};
 use serde::{Deserialize, Serialize};
-use ic_cdk::api::management_canister::main;
-use ic_cdk::call;
+use ic_cdk::api::management_canister::main::{UpdateSettingsArgument, CanisterSettings};
+
 
 // book's info
 static mut IS_USE: bool = false;
@@ -115,4 +114,41 @@ fn wallet_receive() -> () {
 #[ic_cdk_macros::query]
 fn balance_cycles() -> u64 {
     ic_cdk::api::canister_balance()
+}
+
+
+#[ic_cdk_macros::update]
+pub async fn change_book_owner(book_canister_id: Principal, new_owner: Principal) -> bool {
+    // ic::call(Principal::management_canister(), "update_settings", (arg,)).await
+
+    let update_config =  UpdateSettingsArgument{
+        canister_id: book_canister_id,
+        settings: CanisterSettings {
+            controllers: Some(vec![new_owner]),
+            compute_allocation: None,
+            freezing_threshold: None,
+            memory_allocation: None,
+        },
+    };
+
+    match ic_cdk::api::call::call(
+        Principal::management_canister(),
+        "update_settings",
+        (update_config,),
+    ).await
+    {
+        Ok(x) => x,
+        Err((code, msg)) => {
+            // print!("{}", format!(
+            //     "An error happened during the call: {}: {}",
+            //     code as u8, msg
+            // ));
+            panic!("{}", format!(
+                "An error happened during the call: {}: {}",
+                code as u8, msg
+            ));
+        }
+    }
+    
+    true
 }
