@@ -32,12 +32,20 @@
       "candid": "src/hello_backend/hello_backend.did",
       "package": "hello_backend",
       "type": "rust"
+    },
+    "ledger": {
+      "type": "custom",
+      "wasm": "ledger.wasm",
+      "candid": "ledger.public.did"
     }
   },
   "defaults": {
     "build": {
       "args": "",
       "packtool": ""
+    },
+    "replica": {
+      "subnet_type": "system"
     }
   },
   "networks": {
