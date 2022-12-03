@@ -5,19 +5,6 @@
       "package": "openlibrary_backend",
       "type": "rust"
     },
-    "openlibrary_frontend": {
-      "dependencies": [
-        "openlibrary_backend"
-      ],
-      "frontend": {
-        "entrypoint": "src/openlibrary_frontend/src/index.html"
-      },
-      "source": [
-        "src/openlibrary_frontend/assets",
-        "dist/openlibrary_frontend/"
-      ],
-      "type": "assets"
-    },
     "openlibrary_book": {
       "candid": "src/openlibrary_book/openlibrary_book.did",
       "package": "openlibrary_book",
@@ -32,11 +19,6 @@
       "candid": "src/hello_backend/hello_backend.did",
       "package": "hello_backend",
       "type": "rust"
-    },
-    "ledger": {
-      "type": "custom",
-      "wasm": "ledger.wasm",
-      "candid": "ledger.public.did"
     }
   },
   "defaults": {

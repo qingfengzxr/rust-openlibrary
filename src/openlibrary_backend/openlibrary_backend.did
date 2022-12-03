@@ -1,4 +1,7 @@
 service : {
     "greet": (text) -> (text) query;
+
     "create_book": () -> (text);
+    "deposit_cycles": (id: principal, cycles: nat) -> (bool);
+    "change_book_owner": (book_canister_id: principal, new_owner: principal) -> (bool);
 }

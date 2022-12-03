@@ -13,5 +13,5 @@ service : {
     "get_section_size": () -> (int32) query;
     "get_section": (section_cnt: nat64) -> (section) query;
 
-    "deposit_cycles": (id: principal, cycles: nat) -> (bool);
+    "balance_cycles": () -> (nat64) query;
 }

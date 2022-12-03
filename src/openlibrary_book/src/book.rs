@@ -1,8 +1,12 @@
+use candid::Nat;
+use ic_kit::interfaces::management::{CanisterStatusResponse, DefiniteCanisterSettings, Status};
 use once_cell::sync::Lazy;
 use ic_cdk::{export::candid::{candid_method, CandidType, Principal}, api::{management_canister::provisional::CanisterIdRecord, call::{CallResult, call_with_payment128}}};
 use serde::{Deserialize, Serialize};
 use ic_cdk::api::management_canister::main;
+use ic_cdk::call;
 
+// book's info
 static mut IS_USE: bool = false;
 
 static mut BOOK_NAME: Lazy<String> = Lazy::new(|| {
@@ -28,6 +32,7 @@ pub struct Section {
 }
 
 static mut SECTION_LIST: Vec<Section> = vec![];
+
 
 #[ic_cdk_macros::update]
 pub fn init_book(book_name: String, author: String, desc: String) -> bool {
@@ -97,35 +102,17 @@ pub fn get_book_desc() -> String {
     }
 }
 
-/// Deposit cycles into the specified canister.
-///
-/// Note that, beyond the argument as specified in the interface description,
-/// there is a second parameter `cycles` which is the amount of cycles to be deposited.
-///
-/// See [IC method `deposit_cycles`](https://internetcomputer.org/docs/current/references/ic-interface-spec/#ic-deposit_cycles)
+// It is necessary to revice cycles. 
+// If no defined this method, will get error when despoit cycles into this canister.
 #[ic_cdk_macros::update]
+fn wallet_receive() -> () {
+    let amount = ic_cdk::api::call::msg_cycles_available128();
+    if amount > 0 {
+        ic_cdk::api::call::msg_cycles_accept128(amount);
+    }
+}
 
-pub async fn deposit_cycles(canister_id: Principal, cycles_amount: u128) -> bool {
-    match ic_cdk::api::call::call_with_payment128(
-        canister_id,
-        "wallet_receive",
-        {},
-        cycles_amount,
-    )
-    .await
-    {
-        Ok(x) => x,
-        Err((code, msg)) => {
-            // print!("{}", format!(
-            //     "An error happened during the call: {}: {}",
-            //     code as u8, msg
-            // ));
-            panic!("{}", format!(
-                "An error happened during the call: {}: {}",
-                code as u8, msg
-            ));
-        }
-    };
-
-    true
+#[ic_cdk_macros::query]
+fn balance_cycles() -> u64 {
+    ic_cdk::api::canister_balance()
 }
