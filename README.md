@@ -35,3 +35,17 @@ dfx deploy
 ```
 
 Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+
+## In IC Main Network
+```shell
+Installing canisters...
+Installing code for canister openlibrary_backend, with canister ID n24i7-kiaaa-aaaam-qbata-cai
+Installing code for canister openlibrary_book, with canister ID n55ol-hqaaa-aaaam-qbatq-cai
+Module hash 2e9dd3ed724f6363f82eceb9d42a0c7b9a8add4e2262989fd1f38de1b86d0090 is already installed.
+Deployed canisters.
+URLs:
+  Backend canister via Candid interface:
+    openlibrary_backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=n24i7-kiaaa-aaaam-qbata-cai
+    openlibrary_book: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=n55ol-hqaaa-aaaam-qbatq-cai
+    store_backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=mxsmr-faaaa-aaaam-qbauq-cai
+```
