@@ -49,3 +49,8 @@ URLs:
     openlibrary_book: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=n55ol-hqaaa-aaaam-qbatq-cai
     store_backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=mxsmr-faaaa-aaaam-qbauq-cai
 ```
+书籍容器：n55ol-hqaaa-aaaam-qbatq-cai
+
+平台容器：n24i7-kiaaa-aaaam-qbata-cai
+
+存储容器：mxsmr-faaaa-aaaam-qbauq-cai
