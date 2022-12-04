@@ -14,5 +14,4 @@ service : {
     "get_section": (section_cnt: nat64) -> (section) query;
 
     "balance_cycles": () -> (nat64) query;
-    "change_book_owner": (book_canister_id: principal, new_owner: principal) -> (bool);
 }

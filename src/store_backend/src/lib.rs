@@ -10,9 +10,9 @@ type ProfileStore = BTreeMap<String, Profile>;
 
 #[derive(Clone, Debug, Default, CandidType, Deserialize)]
 struct Profile {
-    pub name: String,
+    pub book_name: String,
     pub description: String,
-    pub keywords: Vec<String>,
+    pub sections: Vec<String>,
 }
 
 thread_local! {
@@ -42,12 +42,12 @@ fn search(text: String) -> ManualReply<Option<Profile>> {
     let text = text.to_lowercase();
     PROFILE_STORE.with(|profile_store| {
         for (_, p) in profile_store.borrow().iter() {
-            if p.name.to_lowercase().contains(&text) || p.description.to_lowercase().contains(&text)
+            if p.book_name.to_lowercase().contains(&text) || p.description.to_lowercase().contains(&text)
             {
                 return ManualReply::one(Some(p));
             }
 
-            for x in p.keywords.iter() {
+            for x in p.sections.iter() {
                 if x.to_lowercase() == text {
                     return ManualReply::one(Some(p));
                 }

@@ -1,0 +1,14 @@
+{
+  "hello_backend": {
+    "ic": "nt7dd-4aaaa-aaaam-qbasq-cai"
+  },
+  "openlibrary_backend": {
+    "ic": "n24i7-kiaaa-aaaam-qbata-cai"
+  },
+  "openlibrary_book": {
+    "ic": "n55ol-hqaaa-aaaam-qbatq-cai"
+  },
+  "store_backend": {
+    "ic": "mxsmr-faaaa-aaaam-qbauq-cai"
+  }
+}

@@ -14,11 +14,6 @@
       "candid": "src/store_backend/store_backend.did",
       "package": "store_backend",
       "type": "rust"
-    },
-    "hello_backend": {
-      "candid": "src/hello_backend/hello_backend.did",
-      "package": "hello_backend",
-      "type": "rust"
     }
   },
   "defaults": {

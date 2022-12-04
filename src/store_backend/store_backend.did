@@ -1,7 +1,7 @@
 type Profile = record {
-    "name": text;
+    "book_name": text;
     "description": text;
-    "keywords": vec text;
+    "sections": vec text;
 };
 
 service : {
